@@ -1,6 +1,6 @@
 <html>
 <head>
-        <style>
+    <style>
         * {box-sizing: border-box;}
 
         body {
@@ -12,7 +12,6 @@
             overflow: hidden;
             background-color: #f1f1f1;
             padding: 20px 10px;
-            height: 100px;
         }
 
         .headerLogo{
@@ -37,6 +36,10 @@
             color: black;
         }
 
+        .header a.active {
+            background-color: dodgerblue;
+            color: white;
+        }
 
         .header-right {
             float: right;
@@ -53,20 +56,22 @@
                 float: none;
             }
         }
+    </style>
 
-
-        </style>
 </head>
-<body>
-
 <div class="header">
     <img src="img/logo.png" alt="company logo" class="headerLogo"/>
+
     <div class="header-right">
-        <a id='homePage'  href="HomePage.php">Home</a>
-        <a id="'loginPage"  href=login.php>Login</a>
-        <a id="registrationPage" href="Registration.php">Registration</a>
+        <div id="logged_in_header">
+            <a style="color: dodgerblue;"> Logged in as <?php if (isset($_SESSION['username'])) echo $_SESSION['username'] ?></a>
+            <a  href="HomePage.php">Logout</a>
+        </div>
+        <div id="logged_out_header">
+            <a  href="HomePage.php">Home</a>
+            <a  href=login.php>Login</a>
+            <a  href="Registration.php">Registration</a>
+        </div>
     </div>
 </div>
-</body>
-
 </html>
