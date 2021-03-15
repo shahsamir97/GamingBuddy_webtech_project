@@ -69,23 +69,30 @@
 <body>
 <?php
 include "header.php";
-$userPassword = "123456";
+
 $isAllInputOK = false;
 $email = $password = "";
-if (isset($_COOKIE['email'])){
-    $email = $_COOKIE['email'];
-}
 $emailErr = $passwordErr = null;
 
+if (isset($_COOKIE['email'])){
+    $email = trim($_COOKIE['email']);
+}
 
 if (isset($_POST['email'])) {
-    $email = $_POST['email'];
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $emailErr = "Invalid email format";
+    $email = trim($_POST['email']);
+    if (!empty($email)){
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $emailErr = "Invalid email format";
+            $isAllInputOK = false;
+        }
+        else{
+            $isAllInputOK = true;
+        }
+    }else{
+        $emailErr = "Cannot be empty";
+        $isAllInputOK = false;
     }
-    else{
-        $isAllInputOK = true;
-    }
+
 }
 
 if (isset($_POST['password'])) {
@@ -93,15 +100,9 @@ if (isset($_POST['password'])) {
     if (strlen($_POST['password']) >= 8) {
         if (preg_match("^(?=.*[A-Za-z])(?=.*)(?=.*[@$!%*#?&])[A-Za-z@$%#]^", $_POST['password']) == 1) {
             $passwordErr = "";
-           if ($userPassword == $password){
-               $isAllInputOK = true;
-           }else{
-               $isAllInputOK = false;
-               $passwordErr = "Password do not match";
-           }
+            $isAllInputOK = true;
         }else{
-            $passwordErr = ". Password must contain at least one of the special characters (@, #, $,
-%)";
+            $passwordErr = ". Password must contain at least one of the \n special characters (@, #, $,%)";
             $isAllInputOK = false;
         }
     }else{
