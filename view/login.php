@@ -41,7 +41,7 @@
 
         body {
             overflow: scroll;
-            background-image: url("img/valorant.jpg");
+            background-image: url("../img/valorant.jpg");
             background-size: cover;
         }
 
@@ -68,9 +68,10 @@
 </head>
 <body>
 <?php
+session_start();
+
 include "header.php";
 
-$isAllInputOK = false;
 $email = $password = "";
 $emailErr = $passwordErr = null;
 
@@ -78,36 +79,43 @@ if (isset($_COOKIE['email'])){
     $email = trim($_COOKIE['email']);
 }
 
-if (isset($_POST['email'])) {
-    $email = trim($_POST['email']);
-    if (!empty($email)){
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $emailErr = "Invalid email format";
-            $isAllInputOK = false;
+if ($_SERVER['REQUEST_METHOD'] == "POST"){
+    if (isset($_POST['email'])) {
+        $email = test_input($_POST['email']);
+        if (!empty($email)){
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $emailErr = "Invalid email format";
+            }
+            else{
+                $emailErr = false;
+            }
+        }else{
+            $emailErr = "Cannot be empty";
         }
-        else{
-            $isAllInputOK = true;
-        }
-    }else{
-        $emailErr = "Cannot be empty";
-        $isAllInputOK = false;
+
     }
 
-}
-
-if (isset($_POST['password'])) {
-    $password = $_POST['password'];
-    if (strlen($_POST['password']) >= 8) {
-        if (preg_match("^(?=.*[A-Za-z])(?=.*)(?=.*[@$!%*#?&])[A-Za-z@$%#]^", $_POST['password']) == 1) {
-            $passwordErr = "";
-            $isAllInputOK = true;
+    if (isset($_POST['password'])) {
+        $password = test_input($_POST['password']);
+        if (empty($password)){
+            $passwordErr = "Password cannot be empty";
         }else{
-            $passwordErr = ". Password must contain at least one of the \n special characters (@, #, $,%)";
-            $isAllInputOK = false;
+            if (strlen($_POST['password']) < 6) {
+                $passwordErr = "Password must be at least 6 character!";
+            }
         }
-    }else{
-        $passwordErr = "Password must be at least 8 character!";
-        $isAllInputOK = false;
+    }
+
+    if (!$emailErr && !$passwordErr){
+        require $_SERVER['DOCUMENT_ROOT']."/controller/login_controller.php";
+        $userID = signIn($email, $password);
+        if($userID != null){
+            $_SESSION['userId'] = $userID;
+            $_SESSION['email'] = $email;
+            header('Location: profile.php');
+        }else{
+            echo "<script>alert('Wrong Credentials. Couldn\'t Sign In!')</script>";
+        }
     }
 }
 
@@ -115,12 +123,17 @@ if (isset($_POST['rememberMe'])){
     setcookie("email", $email);
 }
 
-if ($isAllInputOK == true){
- header('Location: ProfilePicture.php');
+function test_input($data){
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
+
+
 ?>
 
-<form method="post" action="<?php echo htmlspecialchars(@$_SERVER['PHP_SELF']);?>">
+<form method="post" action="<?php echo htmlspecialchars(@$_SERVER['PHP_SELF']); ?>">
     <div class="content">
         <div class="sign-in">
             <h2>Sign In</h2>

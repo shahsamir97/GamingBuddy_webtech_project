@@ -32,7 +32,7 @@
 require "header.php";
 ?>
 <div class="content">
-  <h1>Welcome to Gaming Buddy Seller Community</h1>
+  <h1 style="color: white; font-size: 70px">Welcome to Gaming Buddy Seller Community</h1>
 </div>
 <?php
 include "footer.php";

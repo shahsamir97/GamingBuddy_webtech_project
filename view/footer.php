@@ -9,9 +9,7 @@
             text-align: center;
             height: fit-content;
             padding: 20px;
-            position: fixed;
-            z-index: 3;
-            margin-top: 40%;
+            margin-top: 100%;
         }
     </style>
 </head>
