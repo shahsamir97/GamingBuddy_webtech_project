@@ -11,6 +11,3 @@ function signIn($email, $password){
         return $result[0]['id'];
     }
 }
-
-//test case
-//signIn('mdshahsamir@gmail.com','samir@123');

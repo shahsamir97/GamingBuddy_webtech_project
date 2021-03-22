@@ -10,17 +10,15 @@
 <?php
 session_start();
 include 'header.php';
-require $_SERVER['DOCUMENT_ROOT'] . "/controller/profile_controller.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/controller/seller_profile_controller.php";
 
 if (!isset($_SESSION['userId'])) {
-    header('Location: ../view/profile.php');
-} else {
-    echo $_SESSION['userId'];
+    header('Location: ../view/seller_profile.php');
 }
 //When you upload an Image you can also see the preview when all validation successfully completes.
 //The uploaded file will be transfered to Uploads/ folder.
 //when you run and test this app to able to see the preview you must have an upload folder created
-// in the same directory from where you run the profile.php file.
+// in the same directory from where you run the seller_profile.php file.
 
 //User details
 $name = $email = $phone = $address = $region = $shopName = "N/A";
@@ -67,15 +65,15 @@ if (isset($_FILES["profilePictureUpload"]) && isset($_POST["submit"])) {
     }
 }
 ?>
-<script type="text/javascript" src="../scripts/profile_view.js"></script>
 <div class="flex-container">
-            <div class="sidenav">
+            <div class="sidenav rounded-input-field">
                 <a href="#about">Profile</a><br>
                 <a href="#services">Products</a><br>
                 <a href="#clients">Orders</a><br>
                 <a href="#contact">Store Settings</a><br>
+                <a href="../view/change_password.php">Change Password</a>
             </div>
-          <div class="user-data rounded-input-field">
+          <div class="content rounded-input-field">
             <table>
                 <tr>
                     <td>Name</td>
@@ -109,7 +107,6 @@ if (isset($_FILES["profilePictureUpload"]) && isset($_POST["submit"])) {
             <img src="<?php echo $imagePath; ?>" alt="Avatar Icon" height="100" width="100"
                  style="align-content: center"><br>
             <input type="file" name="profilePictureUpload" id="profilePictureUpload">
-
             <p><?php echo $message ?></p>
             <input type="submit" value="Upload Profile Picture" name="submit">
     </div>
@@ -118,6 +115,7 @@ if (isset($_FILES["profilePictureUpload"]) && isset($_POST["submit"])) {
     <?php include 'footer.php'; ?>
 </footer>
 
+<script type="text/javascript" src="../scripts/profile_view.js"></script>
 </body>
 
 </html>

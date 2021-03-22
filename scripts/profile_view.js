@@ -1,4 +1,5 @@
-document.getElementById('logged_in_header').style.visibility = "visible"
-var logged_out_header = document.getElementById('logged_out_header')
-logged_out_header.style.visibility = "hidden"
-logged_out_header.style.display = "none"
+let profileEditButton = document.getElementById('edit_profile').addEventListener('click',applyProfileEdits)
+
+function applyProfileEdits(){
+    window.location.href = "../view/seller_profile_edit.php";
+}

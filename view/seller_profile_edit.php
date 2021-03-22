@@ -1,16 +1,31 @@
 <html>
 <head>
-    <title>Registration</title>
-    <link rel="stylesheet", type="text/css" href="../styles/registration_page_style.css">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="../styles/seller_profileEdit_style.css">
 </head>
 <body>
 <?php
+session_start();
+if (!isset($_SESSION['userId'])){
+    header('Location: ../view/seller_profile.php');
+}
 include "header.php";
-require $_SERVER['DOCUMENT_ROOT']."/controller/registration_controller.php";
+require $_SERVER['DOCUMENT_ROOT']."/controller/seller_profile_controller.php";
 
 
-$nameErr = $shopNameErr = $phoneErr = $emailErr = $passwordErr = $genderErr = $dobErr = $regionErr = "";
-$name = $shopName = $email = $phone = $password = $gender = $dob = $region = "";
+$nameErr = $shopNameErr = $phoneErr = $emailErr = $dobErr = $regionErr = "";
+$name = $shopName = $email = $previousEmail = $phone = $dob = $region = "";
+
+$userInfo = getUserInfo($_SESSION['userId'])[0];
+if ($userInfo != null){
+    $name = $userInfo['name'];
+    $shopName = $userInfo['shopName'];
+    $email = $userInfo['email'];
+    $previousEmail = $userInfo['email'];
+    $phone = $userInfo['phone'];
+    $dob = $userInfo['dob'];
+    $region = $userInfo['region'];
+}
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -76,35 +91,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $dobErr = false;
     }
 
-    if (empty($_POST["gender"])) {
-        $genderErr = "Gender is required";
-    } else {
-        $gender = test_input($_POST["gender"]);
-        $genderErr = false;
-    }
-
-    if (isset($_POST['password'])) {
-        $password = $_POST['password'];
-        if (strlen($_POST['password']) >= 6) {
-            if (preg_match("^(?=.*[A-Za-z])(?=.*)(?=.*[@$!%*#?&])[A-Za-z@$%#]^", $_POST['password']) == 1) {
-                $passwordErr = false;
-            } else {
-                $passwordErr = "Password must contain at least one number, one letter <br>and one of the special characters (@, #, $,%)";
-            }
-        } else {
-            $passwordErr = "Password must be at least 6 character!";
-        }
-    }
-
-    if (!$nameErr && !$shopNameErr && !$emailErr && !$passwordErr
+    if (!$nameErr && !$shopNameErr && !$emailErr
         && !$regionErr && !$dobErr) {
-        if (doesEmailAlreadyExist($email)){
-            $emailErr = "This email is already taken";
-        }else{
-            if (createUser($email, $password, $name, $shopName, $phone, $region, $dob, $gender)){
+        if ($previousEmail == $email){
+            if (applyProfileEdits($_SESSION['userId'], $email, $name, $shopName, $phone, $region, $dob)){
                 echo "<script>alert('Successfully registered. Now you can login')</script>";
+                header('Location: ../view/seller_profile.php');
             }else{
                 echo "<script>alert('Couldn\'t register! Something went wrong. Try again')</script>";
+            }
+        }else{
+            if (doesEmailAlreadyExist($email)){
+                $emailErr = "This email is already taken";
+            }else{
+                if (applyProfileEdits($_SESSION['userId'], $email, $name, $shopName, $phone, $region, $dob)){
+                    echo "<script>alert('Successfully registered. Now you can login')</script>";
+                }else{
+                    echo "<script>alert('Couldn\'t register! Something went wrong. Try again')</script>";
+                }
             }
         }
     }
@@ -123,7 +127,7 @@ function test_input($data){
 <form method="post" action="<?php echo htmlspecialchars(@$_SERVER['PHP_SELF']); ?>">
     <div class="content" id="reg">
         <div class="rounded-form">
-            <h2>Registration</h2>
+            <h2>Edit Profile</h2>
             <div>
                 <input class="rounded-input-field input-field-margin" type="text" name="name" placeholder="Name"
                        value="<?php echo $name ?>"><br>
@@ -143,6 +147,7 @@ function test_input($data){
             <div class="input-field-margin rounded-input-field">
                 <p style="color: gray">Your Country</p>
                 <select name="region" id="regions" class="drop-down-menu">
+                    <option selected="selected" value="<?php echo $region?>"><?php echo $region?></option>
                     <?php
                     include '../utils/utilities.php';
                     $countries = getCountryNames();
@@ -157,23 +162,12 @@ function test_input($data){
                        value="<?php echo $email ?>"><br>
                 <span class="error"><?php echo $emailErr; ?></span>
             </div>
-            <div>
-                <input class="rounded-input-field input-field-margin" type="password" name="password"
-                       placeholder="Password" value="<?php echo $password ?>"><br>
-                <span class="error"><?php echo $passwordErr ?></span>
-            </div>
-            <div class="input-field-margin rounded-input-field">
-                <p style="color: gray">Gender</p>
-                <input type="radio" name="gender" value="Female"> Female
-                <input type="radio" name="gender" value="Male"> Male<br>
-                <span class="error" style="font-weight: normal; padding: 10px"><?php echo $genderErr ?></span>
-            </div>
             <div class="input-field-margin">
-                <p style="font-weight: bold">Date of birth</p>
+                <p style="">Date of birth</p>
                 <input class="rounded-input-field" type="date" name="dob" value="<?php echo $dob?>"><br>
                 <span class="error"><?php echo $dobErr ?></span><br>
             </div>
-            <input class="rectangular-button action-button-margin" type="submit" name="submit" value="Registration">
+            <input class="rectangular-button action-button-margin" type="submit" name="submit" value="Apply Edits">
         </div>
     </div>
 </form>

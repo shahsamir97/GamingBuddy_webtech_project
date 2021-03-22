@@ -1,63 +1,6 @@
 <html>
 <head>
-    <style>
-        * {box-sizing: border-box;}
-
-        body {
-            margin: auto;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        .header {
-            overflow: hidden;
-            background-color: #f1f1f1;
-            padding: 20px 10px;
-        }
-
-        .headerLogo{
-            margin-left: 20px;
-            height: 60px;
-        }
-
-        .header a {
-            float: left;
-            color: black;
-            text-align: center;
-            font-weight: bold;
-            padding: 12px;
-            text-decoration: none;
-            font-size: 18px;
-            line-height: 25px;
-            border-radius: 4px;
-        }
-
-        .header a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-        .header a.active {
-            background-color: dodgerblue;
-            color: white;
-        }
-
-        .header-right {
-            float: right;
-        }
-
-        @media screen and (max-width: 500px) {
-            .header a {
-                float: none;
-                display: block;
-                text-align: left;
-            }
-
-            .header-right {
-                float: none;
-            }
-        }
-    </style>
-
+    <link rel="stylesheet" href="../styles/header_style.css"
 </head>
 <body>
 <?php
@@ -74,8 +17,8 @@ if (isset($_SESSION['userId'])){
 
     <div class="header-right">
         <div id="logged_in_header" style="visibility:<?php echo $loggedIn?>; display: <?php if(!isset($_SESSION['email'])){echo "none";}else{echo "initial";}?>">
-            <p id="userName" style="color: dodgerblue;"><?php if (isset($_SESSION['email']))echo $_SESSION['email']?></p>
-            <a  href="logout.php">Logout</a>
+            <a id="userName"">Logged in as <?php if (isset($_SESSION['email']))echo $_SESSION['email']?></a>
+            <a href="logout.php">Logout</a>
         </div>
         <div id="logged_out_header" style="visibility:<?php echo $loggedOut?>; display: <?php if (isset($_SESSION['email'])){echo "none";}else{echo "initial";}?>">
             <a  href="HomePage.php">Home</a>

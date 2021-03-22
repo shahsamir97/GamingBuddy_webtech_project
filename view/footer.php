@@ -1,17 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link type="text/css" rel="stylesheet" href="../styles/footer_style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        .footer {
-            width: 100%;
-            background-color: #f1f1f1;
-            text-align: center;
-            height: fit-content;
-            padding: 20px;
-            margin-top: 100%;
-        }
-    </style>
 </head>
 <body>
 <div class="footer">

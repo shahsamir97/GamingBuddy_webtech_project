@@ -1,70 +1,7 @@
 <html>
 <head>
     <title>Login</title>
-    <style>
-        html {
-            overflow-y: scroll;
-        }
-
-        .rounded-input-field {
-            border-radius: 15px;
-            border: transparent;
-            background-color: #eeeeee;
-            padding: 15px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .input-field-margin {
-            margin: 6px;
-        }
-
-        .content {
-            margin: auto;
-            text-align: center;
-            padding: 20px;
-
-        }
-
-        .sign-in {
-            padding: 30px;
-            margin: 20px auto auto;
-            width: fit-content;
-            border-radius: 15px;
-            background-color: white;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        }
-
-        .checkbox-style {
-            font-weight: bold;
-        }
-
-        body {
-            overflow: scroll;
-            background-image: url("../img/valorant.jpg");
-            background-size: cover;
-        }
-
-        .rectangular-button {
-            border-radius: 15px;
-            border: transparent;
-            color: white;
-            padding: 10px 15px 10px 15px;
-            background-color: dodgerblue;
-            font-weight: bold;
-            font-size: 18px;
-            text-align: center;
-            elevation: 8deg;
-        }
-
-        .action-button-margin{
-            margin: 30px;
-        }
-
-        .error{
-            color: red;
-        }
-    </style>
+    <link type="text/css" rel="stylesheet" href="../styles/login_page_style.css">
 </head>
 <body>
 <?php
@@ -112,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
         if($userID != null){
             $_SESSION['userId'] = $userID;
             $_SESSION['email'] = $email;
-            header('Location: profile.php');
+            header('Location: seller_profile.php');
         }else{
             echo "<script>alert('Wrong Credentials. Couldn\'t Sign In!')</script>";
         }
@@ -135,7 +72,7 @@ function test_input($data){
 
 <form method="post" action="<?php echo htmlspecialchars(@$_SERVER['PHP_SELF']); ?>">
     <div class="content">
-        <div class="sign-in">
+        <div class="rounded-form">
             <h2>Sign In</h2>
             <div class="input-field-margin">
                 <input class="rounded-input-field " type="text" name="email" value="<?php echo $email?>" placeholder="Your Email"><br>
