@@ -13,7 +13,7 @@ include 'header.php';
 require $_SERVER['DOCUMENT_ROOT'] . "/controller/seller_profile_controller.php";
 
 if (!isset($_SESSION['userId'])) {
-    header('Location: ../view/seller_profile.php');
+    header('Location: ../view/login.php');
 }
 //When you upload an Image you can also see the preview when all validation successfully completes.
 //The uploaded file will be transfered to Uploads/ folder.
@@ -25,45 +25,8 @@ $name = $email = $phone = $address = $region = $shopName = "N/A";
 
 $userInfo = getUserInfo($_SESSION['userId'])[0];
 
+$imagePath = getProfilePicture($_SESSION['userId']);
 
-//Profile picture change
-$message = "";
-$imagePath = "../img/avatar_icon.png";
-$target_dir = "../uploads/";
-if (isset($_FILES["profilePictureUpload"]) && isset($_POST["submit"])) {
-    $message = "working";
-    $target_file = $target_dir . basename($_FILES["profilePictureUpload"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
-    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-        $message = "checking file type";
-        $message = "Sorry, only JPG, JPEG & PNG files are allowed.";
-        $uploadOk = 0;
-    } else {
-        if (file_exists($target_file)) {
-            $message = "Sorry, file already exists.";
-            $uploadOk = 0;
-        } else {
-            if ($_FILES["profilePictureUpload"]["size"] > 4194304) {
-                $message = "checking file size";
-                $message = "Sorry, your file is too large. <br> Picture size should not be more than 4MB";
-                $uploadOk = 0;
-            } else {
-                $uploadOk = 1;
-            }
-        }
-    }
-    if ($uploadOk == 1) {
-        $message = "File successfully uploaded";
-        if (move_uploaded_file($_FILES["profilePictureUpload"]["tmp_name"], $target_file)) {
-            $message = "The file " . htmlspecialchars(basename($_FILES["profilePictureUpload"]["name"])) . " has been uploaded.";
-            $imagePath = "$target_file";
-        } else {
-            $message = "Sorry, there was an error uploading your file.";
-        }
-    }
-}
 ?>
 <div class="flex-container">
             <div class="sidenav rounded-input-field">
@@ -74,7 +37,7 @@ if (isset($_FILES["profilePictureUpload"]) && isset($_POST["submit"])) {
                 <a href="../view/change_password.php">Change Password</a>
             </div>
           <div class="content rounded-input-field">
-            <table>
+            <table class="user-info">
                 <tr>
                     <td>Name</td>
                     <td> : <?php echo $userInfo['name']; ?></td>
@@ -102,13 +65,11 @@ if (isset($_FILES["profilePictureUpload"]) && isset($_POST["submit"])) {
             </table>
               <input id="edit_profile" class="rectangular-button" type="button" value="Edit Profile"/>
         </div>
+
     <div class="profile-picture rounded-input-field">
                 <p>Profile Picture</p>
-            <img src="<?php echo $imagePath; ?>" alt="Avatar Icon" height="100" width="100"
+            <img src="<?php echo $imagePath; ?>" alt="Avatar Icon" height="200" width="200"
                  style="align-content: center"><br>
-            <input type="file" name="profilePictureUpload" id="profilePictureUpload">
-            <p><?php echo $message ?></p>
-            <input type="submit" value="Upload Profile Picture" name="submit">
     </div>
 </div>
 <footer>

@@ -2,10 +2,10 @@
 
 require $_SERVER['DOCUMENT_ROOT'] . '/model/db_connect.php';
 
-function editSellerDetails($userID, $email, $name, $shopName, $phone, $region, $dob)
+function editSellerDetails($userID, $email, $name, $shopName, $phone, $region, $dob, $imgUrl)
 {
     $conn = db_conn();
-    $query = "update seller set email='$email', name='$name', shopName='$shopName', phone='$phone', region='$region', dob='$dob' where id='$userID'";
+    $query = "update seller set email='$email', name='$name', shopName='$shopName', phone='$phone', region='$region', dob='$dob', imgUrl='$imgUrl' where id='$userID'";
     try {
         $conn->exec($query);
         $conn = null;
@@ -90,6 +90,21 @@ function retrieveOldPassword($userId){
         $row = $result->fetchAll(PDO::FETCH_ASSOC);
         $conn = null;
         return $row[0]['password'];
+    } catch (PDOException $e){
+        echo $e->getMessage();
+        $conn = null;
+        return null;
+    }
+}
+
+function retrieveProfilePicture($userId){
+    $conn = db_conn();
+    $query = "select imgUrl from seller where id='$userId'";
+    try {
+        $result = $conn->query($query);
+        $row = $result->fetchAll(PDO::FETCH_ASSOC);
+        $conn = null;
+        return $row[0]['imgUrl'];
     } catch (PDOException $e){
         echo $e->getMessage();
         $conn = null;

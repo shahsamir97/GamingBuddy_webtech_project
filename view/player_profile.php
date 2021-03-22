@@ -31,7 +31,7 @@ $userInfo = getUserInfo($_SESSION['userId'])[0];
 //Profile picture change
 $message = "";
 $imagePath = "../img/avatar_icon.png";
-$target_dir = "../uploads/";
+$target_dir = "../storage/";
 if (isset($_FILES["profilePictureUpload"]) && isset($_POST["submit"])) {
     $message = "working";
     $target_file = $target_dir . basename($_FILES["profilePictureUpload"]["name"]);
