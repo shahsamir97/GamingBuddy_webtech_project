@@ -48,27 +48,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-        /*if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-            $message = "checking file type";
-            $message = "Sorry, only JPG, JPEG & PNG files are allowed.";
-            $uploadOk = 0;
-        } else {
-            if (file_exists($target_file)) {
-                $message = "Sorry, file already exists.";
-                $uploadOk = 0;
-            } else {
-                if ($_FILES["profilePictureUpload"]["size"] > 4194304) {
-                    $message = "checking file size";
-                    $message = "Sorry, your file is too large. <br> Picture size should not be more than 4MB";
-                    $uploadOk = 0;
-                } else {
-                    echo
-                    $uploadOk = 1;
-
-                }
-            }
-        }*/
-
         if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
             $message = "checking file type";
             $message = "Sorry, only JPG, JPEG & PNG files are allowed.";

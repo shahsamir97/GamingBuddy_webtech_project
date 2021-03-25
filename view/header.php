@@ -17,7 +17,7 @@ if (isset($_SESSION['userId'])){
 
     <div class="header-right">
         <div id="logged_in_header" style="visibility:<?php echo $loggedIn?>; display: <?php if(!isset($_SESSION['email'])){echo "none";}else{echo "initial";}?>">
-            <a id="userName"">Logged in as <?php if (isset($_SESSION['email']))echo $_SESSION['email']?></a>
+            <a href="../view/seller_profile.php" id="userName"">Logged in as <?php if (isset($_SESSION['email']))echo $_SESSION['email']?></a>
             <a href="logout.php">Logout</a>
         </div>
         <div id="logged_out_header" style="visibility:<?php echo $loggedOut?>; display: <?php if (isset($_SESSION['email'])){echo "none";}else{echo "initial";}?>">

@@ -5,3 +5,7 @@ function getCountryNames(){
 
     return $countries;
 }
+
+function getProductCategory(){
+   return $categories = array("Game","BattlePass", "Gift Card", "Account");
+}
