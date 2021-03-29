@@ -26,7 +26,7 @@ if ($imagePath == null){
 
 $target_dir = "../storage/seller_profile_pictures/";
 
-$userInfo = getUserInfo($_SESSION['userId'])[0];
+$product = getUserInfo($_SESSION['userId'])[0];
 if ($userInfo != null) {
     $name = $userInfo['name'];
     $shopName = $userInfo['shopName'];

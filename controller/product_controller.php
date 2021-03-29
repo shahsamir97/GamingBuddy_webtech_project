@@ -9,3 +9,11 @@ function addProduct($sellerId, $productName, $productDetails, $price ,$category,
         return false;
     }
 }
+
+function getAllProducts($sellerId){
+    return retrieveAllProducts($sellerId);
+}
+
+function getProductDetails($productId){
+    return retrieveProductDetails($productId);
+}

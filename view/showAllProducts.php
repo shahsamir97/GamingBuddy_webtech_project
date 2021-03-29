@@ -6,47 +6,30 @@
 </head>
 <body>
 <?php
-//require $_SERVER['DOCUMENT_ROOT'] . "/controller/product_controller.php";
+session_start();
+require $_SERVER['DOCUMENT_ROOT'] . "/controller/product_controller.php";
 
+$products = getAllProducts($_SESSION['userId']);
+include "../view/header.php";
 ?>
-?>
-
-<h2>Responsive Column Cards</h2>
-<p>Resize the browser window to see the effect.</p>
+<div class="head-line">
+    <h2>Products</h2>
+</div>
 <div class="product-list">
-    <div class="row">
-
-        <div class="column">
-            <div class="card">
-                <h3>Card 1</h3>
-                <p>Some text</p>
-                <p>Some text</p>
+    <div class="row" id="product_list">
+        <?php foreach ($products as $key => $product): ?>
+            <div class="column" id="<?php echo $product['id']; ?>">
+                <div class="card" id="<?php echo $product['id']; ?>">
+                    <img id="<?php echo $product['id']; ?>" src="<?php echo $product['imgUrl'] ?>" alt="Product Photo" height="200"/>
+                    <h4 id="<?php echo $product['id']; ?>"><?php echo $product['productName'] ?></h4>
+                </div>
             </div>
-        </div>
-
-        <div class="column">
-            <div class="card">
-                <h3>Card 2</h3>
-                <p>Some text</p>
-            </div>
-        </div>
-
-        <div class="column">
-            <div class="card">
-                <h3>Card 3</h3>
-                <p>Some text</p>
-                <p>Some text</p>
-            </div>
-        </div>
-
-        <div class="column">
-            <div class="card">
-                <h3>Card 4</h3>
-                <p>Some text</p>
-                <p>Some text</p>
-            </div>
-        </div>
+        <?php endforeach; ?>
     </div>
 </div>
+<footer>
+    <?php include "../view/footer.php" ?>
+</footer>
+<script src="../scripts/showAllProducts.js"></script>
 </body>
 </html>
