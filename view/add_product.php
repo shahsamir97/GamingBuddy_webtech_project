@@ -2,6 +2,7 @@
 <head>
     <title>Add Product</title>
     <link rel="stylesheet" href="../styles/addProduct_style.css">
+    <script type="text/javascript" src="../scripts/add_product.js"></script>
 </head>
 <body>
 <?php
@@ -119,7 +120,7 @@ function test_input($data)
 
 ?>
 
-<form method="post" action="<?php echo htmlspecialchars(@$_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data">
+<form method="post" action="<?php echo htmlspecialchars(@$_SERVER['PHP_SELF']);?>" enctype="multipart/form-data" onsubmit="return validateForm()">
     <div class="content" id="reg">
         <div class="rounded-form">
             <h2>Add Product</h2>
@@ -131,21 +132,21 @@ function test_input($data)
                 <p><?php echo $message ?></p>
             </div><br>
             <div>
-                <input class="rounded-input-field input-field-margin" type="text" name="productName" placeholder="Product Name"
-                       value="<?php echo $productName ?>"><br>
-                <span class="error"><?php echo $productNameErr ?></span>
+                <input id="productName" class="rounded-input-field input-field-margin" type="text" name="productName" placeholder="Product Name"
+                       value="<?php echo $productName ?>" onblur="verifyName()"><br>
+                <span id="productNameErr" class="error"><?php echo $productNameErr ?></span>
             </div>
             <div>
-                <textarea class="rounded-input-field input-field-margin" name="productDetails"
+                <textarea id="productDetails" class="rounded-input-field input-field-margin" name="productDetails"
                           rows="4" cols="40"
-                          placeholder="Product Details"></textarea><br>
-                <span class="error"><?php echo $productDetailsErr ?></span>
+                          placeholder="Product Details" onblur="verifyDetails()"></textarea><br>
+                <span id="productDetailsErr" class="error"><?php echo $productDetailsErr ?></span>
             </div>
             <div>
-                <input class="rounded-input-field input-field-margin" type="number" name="price"
+                <input id="pPrice" class="rounded-input-field input-field-margin" type="number" name="price"
                        placeholder="Price"
-                       value="<?php echo $price ?>"><br>
-                <span class="error"><?php echo $priceErr ?></span>
+                       value="<?php echo $price ?>" onblur="verifyPrice()"><br>
+                <span id="pPriceErr" class="error"><?php echo $priceErr ?></span>
             </div>
             <div class="input-field-margin rounded-input-field">
                 <p style="color: gray">Category</p>

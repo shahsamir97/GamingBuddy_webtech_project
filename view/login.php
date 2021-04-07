@@ -2,6 +2,7 @@
 <head>
     <title>Login</title>
     <link type="text/css" rel="stylesheet" href="../styles/login_page_style.css">
+    <script type="text/javascript" src="../scripts/login.js"></script>
 </head>
 <body>
 <?php
@@ -70,17 +71,17 @@ function test_input($data){
 
 ?>
 
-<form method="post" action="<?php echo htmlspecialchars(@$_SERVER['PHP_SELF']); ?>">
+<form method="post" action="<?php echo htmlspecialchars(@$_SERVER['PHP_SELF']); ?>" onsubmit="return validateForm()">
     <div class="content">
         <div class="rounded-form">
             <h2>Sign In</h2>
             <div class="input-field-margin">
-                <input class="rounded-input-field " type="text" name="email" value="<?php echo $email?>" placeholder="Your Email"><br>
-                <p class="error"><?php echo $emailErr?></p><br>
+                <input id="email" class="rounded-input-field " type="text" name="email" value="<?php echo $email?>" placeholder="Your Email"><br>
+                <p id="emailErr" class="error"><?php echo $emailErr?></p>
             </div>
            <div class="input-field-margin">
-               <input class="rounded-input-field " type="password" name="password" value="<?php echo $password?>" placeholder="Password"><br>
-               <p class="error"><?php echo $passwordErr?></p><br>
+               <input id="password" class="rounded-input-field " type="password" name="password" value="<?php echo $password?>" placeholder="Password"><br>
+               <p id="passwordErr" class="error"><?php echo $passwordErr?></p>
            </div>
             <input class="input-field-margin checkbox-style" type="checkbox" name="rememberMe"><span class="checkbox-style">Remember Me</span><br>
             <input class="rectangular-button input-field-margin" type="submit" name="submit" value="Login"><br>
