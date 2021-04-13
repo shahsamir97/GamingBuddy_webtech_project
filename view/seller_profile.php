@@ -29,47 +29,47 @@ $imagePath = getProfilePicture($_SESSION['userId']);
 
 ?>
 <div class="flex-container">
-            <div class="sidenav rounded-input-field">
-                <a href="#about">Profile</a><br>
-                <a href="../view/add_product.php">Add Product</a><br>
-                <a href="#clients">Orders</a><br>
-                <a href="#contact">Store Settings</a><br>
-                <a href="../view/change_password.php">Change Password</a>
-            </div>
-          <div class="content rounded-input-field">
-            <table class="user-info">
-                <tr>
-                    <td>Name</td>
-                    <td> : <?php echo $userInfo['name']; ?></td>
-                </tr>
-                <tr>
-                    <td>Shop Name</td>
-                    <td> : <?php echo $userInfo['shopName']; ?></td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td> : <?php echo $userInfo['email']; ?></td>
-                </tr>
-                <tr>
-                    <td>Phone</td>
-                    <td> : <?php echo $userInfo['phone']; ?></td>
-                </tr>
-                <tr>
-                    <td>Region</td>
-                    <td> : <?php echo $userInfo['region']; ?></td>
-                </tr>
-                <tr>
-                    <td>Date of birth</td>
-                    <td> : <?php echo $userInfo['dob'] ?></td>
-                </tr>
-            </table>
-              <input id="edit_profile" class="rectangular-button" type="button" value="Edit Profile"/>
-        </div>
+    <div class="sidenav">
+        <p class="sidenav-items">Profile<a href="../view/seller_profile.php"></a></p>
+        <p class="sidenav-items"><a href="../view/add_product.php">Add Product</a></p>
+        <p class="sidenav-items"><a href="#clients">Orders</a></p>
+        <p class="sidenav-items"><a href="../view/showAllProducts.php">Store</a></p>
+        <p class="sidenav-items"><a href="../view/change_password.php">Change Password</a></p>
+    </div>
+    <div class="content rounded-input-field">
+        <table class="user-info">
+            <tr>
+                <td>Name</td>
+                <td> : <?php echo $userInfo['name']; ?></td>
+            </tr>
+            <tr>
+                <td>Shop Name</td>
+                <td> : <?php echo $userInfo['shopName']; ?></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td> : <?php echo $userInfo['email']; ?></td>
+            </tr>
+            <tr>
+                <td>Phone</td>
+                <td> : <?php echo $userInfo['phone']; ?></td>
+            </tr>
+            <tr>
+                <td>Region</td>
+                <td> : <?php echo $userInfo['region']; ?></td>
+            </tr>
+            <tr>
+                <td>Date of birth</td>
+                <td> : <?php echo $userInfo['dob'] ?></td>
+            </tr>
+        </table>
+        <input id="edit_profile" class="rectangular-button" type="button" value="Edit Profile"/>
+    </div>
 
     <div class="profile-picture rounded-input-field">
-                <p>Profile Picture</p>
-            <img src="<?php echo $imagePath; ?>" alt="Avatar Icon" height="200" width="200"
-                 style="align-content: center"><br>
+        <p>Profile Picture</p>
+        <img src="<?php echo $imagePath; ?>" alt="Avatar Icon" height="200" width="200"
+             style="align-content: center"><br>
     </div>
 </div>
 <footer>

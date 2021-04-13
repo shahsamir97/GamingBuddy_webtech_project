@@ -5,7 +5,9 @@
 </head>
 <body>
 <?php
-require $_SERVER['DOCUMENT_ROOT'] . "/controller/product_controller.php";
+session_start();
+include "../view/header.php";
+require "../controller/product_controller.php";
 
 if (!isset($_GET['productId'])){
     echo "Invalid Url";
@@ -21,8 +23,10 @@ $product = getProductDetails($_GET['productId']);
           </div>
            <div class="product-info">
                <h2><?php echo $product['productName'].""?></h2>
+               <h3 class="price-text">BDT <?php echo $product['price'].""?></h3>
                <h3 class="underlined-word">Details</h3>
                <p><?php  echo $product['ProductDetails'];?></p>
+               <button class="rectangular-button action-button-margin" id="editButton">Edit Product</button>
            </div>
        </div>
    </div>

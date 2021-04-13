@@ -26,7 +26,7 @@ if ($imagePath == null){
 
 $target_dir = "../storage/seller_profile_pictures/";
 
-$product = getUserInfo($_SESSION['userId'])[0];
+$userInfo = getUserInfo($_SESSION['userId'])[0];
 if ($userInfo != null) {
     $name = $userInfo['name'];
     $shopName = $userInfo['shopName'];
@@ -147,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         && !$regionErr && !$dobErr) {
         if ($previousEmail == $email) {
             if (applyProfileEdits($_SESSION['userId'], $email, $name, $shopName, $phone, $region, $dob, $imagePath)) {
-                 echo "<script>alert('Successfully registered. Now you can login')</script>";
+                 echo "<script>alert('Edits Applied Successfully!. Now you can login')</script>";
             } else {
                 echo "<script>alert('Couldn\'t register! Something went wrong. Try again')</script>";
             }

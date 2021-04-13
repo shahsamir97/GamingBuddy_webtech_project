@@ -1,14 +1,16 @@
 .flex-container{
     display: flex;
     height: fit-content;
-    background-color: dodgerblue;
     justify-content: center;
+    background-color: #eeeeee;
 }
 
 .content{
+    margin: 20px;
+    border-radius: 15px;
     width: 700px;
     height: fit-content;
-    background-color: red;
+    background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -49,4 +51,24 @@ text-align: center;
 
 hr{
     padding: 0;
+}
+
+.price-text{
+    color: dodgerblue;
+}
+
+.rectangular-button {
+    border-radius: 15px;
+    border: transparent;
+    color: white;
+    padding: 10px 15px 10px 15px;
+    background-color: dodgerblue;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    elevation: 8deg;
+}
+
+.action-button-margin{
+    margin: 30px;
 }

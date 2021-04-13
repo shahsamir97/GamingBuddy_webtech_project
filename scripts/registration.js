@@ -99,7 +99,6 @@ function validateForm(){
     if (nameOk && emailOk && phoneOk && passwordOk && genderOk && dobOk){
         return true
     }else {
-        alert("Wrong Input! Please check the form again")
         verifyEmail()
         verifyName()
         verifyShopName()

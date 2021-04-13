@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                 $emailErr = false;
             }
         }else{
-            $emailErr = "Cannot be empty";
+            $emailErr = "Email cannot be empty";
         }
 
     }
@@ -37,10 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
         $password = test_input($_POST['password']);
         if (empty($password)){
             $passwordErr = "Password cannot be empty";
-        }else{
-            if (strlen($_POST['password']) < 6) {
-                $passwordErr = "Password must be at least 6 character!";
-            }
         }
     }
 

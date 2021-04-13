@@ -43,7 +43,8 @@ body {
 
 /* Style the counter cards */
 .card {
-    height: 260px;
+    min-width: 250px;
+    height: fit-content;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     text-align: center;
     background-color: #f1f1f1;
@@ -68,3 +69,32 @@ body {
 
 }
 
+
+.search-box{
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.search-box-input{
+    width: 30%;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px 0 0 10px;
+    padding: 10px;
+}
+
+.search-box-button{
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 0 10px 10px 0;
+    border-color: dodgerblue;
+    color: white;
+    background-color: dodgerblue;
+    padding: 10px;
+}
+
+.price-text{
+    color: dodgerblue;
+}

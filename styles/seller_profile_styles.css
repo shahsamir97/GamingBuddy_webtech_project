@@ -34,21 +34,20 @@ tr {
 
 .sidenav {
     flex: 15%;
-    height: 300px;
-    padding: 20px;
-    background-color: black;
-    text-align: left;
 }
 
 .sidenav a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 25px;
-    color: darkblue;
+    color: black;
+
 }
 
-.sidenav a:hover {
-    background-color: dodgerblue;
+
+.sidenav p:hover {
+    transform: scale(1.2);
+    transition-duration: 0.7s;
 }
 
 .profile-picture{
@@ -76,4 +75,10 @@ tr {
 }
 .error{
     color: red;
+}
+
+.sidenav-items{
+    text-align: center;
+    border: dodgerblue solid 3px;
+    margin: 10px;
 }
