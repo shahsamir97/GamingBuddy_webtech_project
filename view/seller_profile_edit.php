@@ -2,6 +2,7 @@
 <head>
     <title>Edit Profile</title>
     <link rel="stylesheet" href="../styles/seller_profileEdit_style.css">
+    <script type="text/javascript" src="../scripts/seller_profile_edit.js"></script>
 </head>
 <body>
 <?php
@@ -176,7 +177,7 @@ function test_input($data)
 
 ?>
 
-<form method="post" action="<?php echo htmlspecialchars(@$_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data">
+<form method="post" action="<?php echo htmlspecialchars(@$_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" onsubmit="return validateForm()">
     <div class="content" id="reg">
         <div class="rounded-form">
             <h2>Edit Profile</h2>
@@ -188,21 +189,21 @@ function test_input($data)
                 <p><?php echo $message ?></p>
             </div>
             <div>
-                <input class="rounded-input-field input-field-margin" type="text" name="name" placeholder="Name"
-                       value="<?php echo $name ?>"><br>
-                <span class="error"><?php echo $nameErr ?></span>
+                <input id="name" class="rounded-input-field input-field-margin" type="text" name="name" placeholder="Name"
+                       value="<?php echo $name ?>" onblur="verifyName()"><br>
+                <span id="nameErr" class="error"><?php echo $nameErr ?></span>
             </div>
             <div>
-                <input class="rounded-input-field input-field-margin" type="text" name="shopName"
+                <input id="shopName" class="rounded-input-field input-field-margin" type="text" name="shopName"
                        placeholder="Shop Name"
-                       value="<?php echo $shopName ?>"><br>
-                <span class="error"><?php echo $shopNameErr ?></span>
+                       value="<?php echo $shopName ?>" onblur="verifyShopName()"><br>
+                <span id="shopNameErr" class="error"><?php echo $shopNameErr ?></span>
             </div>
             <div>
-                <input class="rounded-input-field input-field-margin" type="text" name="phone"
+                <input id="phone" class="rounded-input-field input-field-margin" type="text" name="phone"
                        placeholder="Phone(Eg. +8801626...)"
-                       value="<?php echo $phone ?>"><br>
-                <span class="error"><?php echo $phoneErr; ?></span>
+                       value="<?php echo $phone ?>" onblur="verifyPhone()"><br>
+                <span id="phoneErr" class="error"><?php echo $phoneErr; ?></span>
             </div>
             <div class="input-field-margin rounded-input-field">
                 <p style="color: gray">Your Country</p>
@@ -218,14 +219,14 @@ function test_input($data)
                 </select><br><span class="error"><?php echo $regionErr ?></span>
             </div>
             <div>
-                <input class="rounded-input-field input-field-margin" type="text" name="email" placeholder="Email"
-                       value="<?php echo $email ?>"><br>
-                <span class="error"><?php echo $emailErr; ?></span>
+                <input id="email" class="rounded-input-field input-field-margin" type="text" name="email" placeholder="Email"
+                       value="<?php echo $email ?>" onblur="verifyEmail()"><br>
+                <span id="emailErr" class="error"><?php echo $emailErr; ?></span>
             </div>
             <div class="input-field-margin">
                 <p style="">Date of birth</p>
-                <input class="rounded-input-field" type="date" name="dob" value="<?php echo $dob ?>"><br>
-                <span class="error"><?php echo $dobErr ?></span><br>
+                <input id="dob" class="rounded-input-field" type="date" name="dob" value="<?php echo $dob ?>"><br>
+                <span id="dobErr" class="error"><?php echo $dobErr ?></span><br>
             </div>
             <input class="rectangular-button action-button-margin" type="submit" name="submit" value="Apply Edits">
         </div>
