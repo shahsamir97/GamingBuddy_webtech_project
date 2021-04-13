@@ -1,5 +1,5 @@
 <?php
-use Cassandra\Uuid;
+
 require $_SERVER['DOCUMENT_ROOT']."/model/db_connect.php";
 
 function registerUser($email, $password, $name, $shopName,$phone, $region, $dob, $gender){

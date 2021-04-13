@@ -42,6 +42,18 @@ function verifyEmail(){
     }
 }
 
+function isEmailExist(){
+    var email = document.getElementById("email").value
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("emailErr").innerText = this.responseText;
+        }
+    };
+    xhttp.open("GET", "../controller/registration_controller.php?email=" + email, true);
+    xhttp.send();
+}
+
 function verifyPhone(){
     var phone = document.getElementById("phone").value
     var phoneErr = document.getElementById("phoneErr")

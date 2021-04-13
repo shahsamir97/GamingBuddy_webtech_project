@@ -155,7 +155,7 @@ function test_input($data){
             </div>
             <div>
                 <input id="email" class="rounded-input-field input-field-margin" type="text" name="email" placeholder="Email"
-                       value="<?php echo $email ?>"onblur="verifyEmail()"><br>
+                       value="<?php echo $email ?>"onblur="isEmailExist()"><br>
                 <span id="emailErr" class="error"><?php echo $emailErr; ?></span>
             </div>
             <div>

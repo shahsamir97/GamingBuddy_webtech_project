@@ -14,8 +14,14 @@ function createUser($email, $password, $name, $shopName,$phone, $region, $dob, $
 
 function doesEmailAlreadyExist($email){
     if (checkEmailExists($email)){
+        echo "Email already exist";
         return true;
     }else{
+        echo false;
         return false;
     }
+}
+
+if (isset($_GET['email'])){
+    doesEmailAlreadyExist($_GET['email']);
 }
