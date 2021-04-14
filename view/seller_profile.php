@@ -30,11 +30,13 @@ $imagePath = getProfilePicture($_SESSION['userId']);
 ?>
 <div class="flex-container">
     <div class="sidenav">
-        <p class="sidenav-items">Profile<a href="../view/seller_profile.php"></a></p>
-        <p class="sidenav-items"><a href="../view/add_product.php">Add Product</a></p>
-        <p class="sidenav-items"><a href="#clients">Orders</a></p>
-        <p class="sidenav-items"><a href="../view/showAllProducts.php">Store</a></p>
-        <p class="sidenav-items"><a href="../view/change_password.php">Change Password</a></p>
+        <a href="../view/seller_profile.php"><p class="sidenav-items">Profile</p></a>
+        <a href="../view/add_product.php"><p class="sidenav-items">Add Product</p></a>
+        <a href="#clients"><p class="sidenav-items">Orders</p></a>
+        <a href="../view/showAllProducts.php"><p class="sidenav-items">Store</p></a>
+        <a href="../view/change_password.php"><p class="sidenav-items">Change Password</p></a>
+        <a href="../view/login_activity.php"><p class="sidenav-items">Login Activity</p></a>
+
     </div>
     <div class="content rounded-input-field">
         <table class="user-info">

@@ -48,3 +48,22 @@ function checkEmailExists($email){
         return false;
     }
 }
+
+function storeLoginInfo($userId, $ipAddress, $time){
+    if (file_exists('../storage/loginInfo.json')){
+        $current_data = file_get_contents('../storage/loginInfo.json');
+        $array_data = json_decode($current_data, true);
+        $data = array(
+            'userId' => $userId,
+            'ipAddress' => $ipAddress,
+            'time' => $time
+        );
+        $array_data[] = $data;
+        $final_data = json_encode($array_data);
+        if (file_put_contents('../storage/loginInfo.json', $final_data)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
