@@ -2,6 +2,7 @@
 <head>
     <title>Product Details</title>
     <link rel="stylesheet" href="../styles/productView_style.css"/>
+    <script type="text/javascript" src="../scripts/product_view.js"></script>
 </head>
 <body>
 <?php
@@ -26,9 +27,10 @@ $product = getProductDetails($_GET['productId']);
                <h3 class="price-text">BDT <?php echo $product['price'].""?></h3>
                <h3 class="underlined-word">Details</h3>
                <p><?php  echo $product['ProductDetails'];?></p>
-               <button class="rectangular-button action-button-margin" id="editButton">Edit Product</button>
+               <a href="../view/edit_product.php?productId=<?php echo $product['id']?>" class="rectangular-button action-button-margin" id="editButton">Edit Product</a>
            </div>
        </div>
    </div>
+
 </body>
 </html>

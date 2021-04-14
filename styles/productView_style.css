@@ -72,3 +72,7 @@ hr{
 .action-button-margin{
     margin: 30px;
 }
+
+#editButton{
+    text-decoration: none;
+}

@@ -1,14 +1,3 @@
-var cards = document.querySelector("#product_list")
-
-cards.addEventListener('click', doSomething, false)
-
-function doSomething(e) {
-    if (e.target !== e.currentTarget) {
-        window.location.href = "../view/product_view.php?productId=" + e.target.id
-        e.stopPropagation()
-    }
-}
-
 
 function searchProduct() {
     var text = document.getElementById('searchBox').value

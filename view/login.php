@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
         if($userID != null){
             //saving user login info
             $ipAddress = getIpAddress();
-            //date_default_timezone_set("Asia/Dhaka");
+            date_default_timezone_set("Asia/Dhaka");
             $time = date("l jS \of F Y h:i:s A");
             storeLoginInfo($userID, $ipAddress, $time);
         //ends
