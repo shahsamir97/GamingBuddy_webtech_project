@@ -7,13 +7,14 @@
 <body>
 <?php
 session_start();
-include "../view/header.php";
-require "../controller/product_controller.php";
 
 if (!isset($_GET['productId'])){
     echo "Invalid Url";
     return;
 }
+
+include "../view/header.php";
+require "../controller/product_controller.php";
 
 $product = getProductDetails($_GET['productId']);
 ?>

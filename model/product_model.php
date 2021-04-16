@@ -14,6 +14,20 @@ function addProductToDb($userId, $productName, $productDetails, $price,$category
     return true;
 }
 
+function updateProductInDB($productId, $productName, $productDetails, $price, $category, $imgUrl){
+    $conn = db_conn();
+    $query = "update product set productName='$productName', productDetails='$productDetails', price='$price', category='$category', imgUrl='$imgUrl' where id='$productId'";
+    try {
+        $conn->exec($query);
+        $conn = null;
+        return true;
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        $conn = null;
+        return false;
+    }
+}
+
 function retrieveAllProducts($sellerId){
         $conn = db_conn();
         $query = "select * from product where sellerId='$sellerId'";

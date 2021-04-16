@@ -10,6 +10,14 @@ function addProduct($sellerId, $productName, $productDetails, $price ,$category,
     }
 }
 
+function updateProduct($productId, $productName, $productDetails, $price, $category, $imgUrl){
+    if (updateProductInDB($productId, $productName, $productDetails, $price, $category, $imgUrl)){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 function getAllProducts($sellerId){
     return retrieveAllProducts($sellerId);
 }

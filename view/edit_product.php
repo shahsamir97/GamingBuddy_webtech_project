@@ -29,6 +29,10 @@ $target_dir = "../storage/product_pictures/";
 
 if (isset($_GET['productId'])){
     $product = getProductDetails($_GET['productId']);
+    $productName = $product['productName'];
+    $productDetails = $product['ProductDetails'];
+    $price = $product['price'];
+    $category = $product['category'];
     $imagePath = $product['imgUrl'];
 }
 
@@ -36,7 +40,7 @@ if (isset($_GET['productId'])){
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if (isset($_FILES["profilePictureUpload"])) {
+    if (isset($_FILES["profilePictureUpload"]) && $_FILES['profilePictureUpload']['size'] != 0) {
         $temp = explode(".", $_FILES["profilePictureUpload"]["name"]);
         $newFilename = $target_dir.random_int(1,PHP_INT_MAX-1) . $_SESSION['userId'] . '.' . end($temp);
         $message = "working";
@@ -109,10 +113,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (!$productNameErr && !$productDetailsErr
         && !$categoryErr) {
-        if (addProduct($_SESSION['userId'], $productName, $productDetails, $price, $category, $imagePath)){
-            echo "<script>alert('Product successfully added')</script>";
+        if (updateProduct($product['id'], $productName, $productDetails, $price, $category, $imagePath)){
+            echo "<script>alert('Product successfully Edited')</script>";
         }else{
-            echo "<script>alert('Something went wrong! Couldn\'t add the product. Try Again')</script>";
+            echo "<script>alert('Something went wrong! Couldn\'t update the product. Try Again')</script>";
         }
     }
 
@@ -128,7 +132,7 @@ function test_input($data)
 
 ?>
 
-<form method="post" action="<?php echo htmlspecialchars(@$_SERVER['PHP_SELF']);?>" enctype="multipart/form-data" onsubmit="return validateForm()">
+<form method="post" action="<?php echo htmlspecialchars(@$_SERVER['PHP_SELF']."?productId={$product['id']}");?>" enctype="multipart/form-data" >
     <div class="content" id="reg">
         <div class="rounded-form">
             <h2>Edit Product</h2>
@@ -141,25 +145,25 @@ function test_input($data)
             </div><br>
             <div>
                 <input id="productName" class="rounded-input-field input-field-margin" type="text" name="productName" placeholder="Product Name"
-                       value="<?php echo $product['productName'] ?>" onblur="verifyName()"><br>
+                       value="<?php echo $productName ?>" onblur="verifyName()"><br>
                 <span id="productNameErr" class="error"><?php echo $productNameErr ?></span>
             </div>
             <div>
                 <textarea id="productDetails" class="rounded-input-field input-field-margin" name="productDetails"
                           rows="4" cols="40"
-                          placeholder="Product Details" onblur="verifyDetails()"><?php echo $product['ProductDetails']?></textarea><br>
+                          placeholder="Product Details" onblur="verifyDetails()"><?php echo $productDetails?></textarea><br>
                 <span id="productDetailsErr" class="error"><?php echo $productDetailsErr ?></span>
             </div>
             <div>
                 <input id="pPrice" class="rounded-input-field input-field-margin" type="number" name="price"
                        placeholder="Price"
-                       value="<?php echo $product['price'] ?>" onblur="verifyPrice()"><br>
+                       value="<?php echo $price ?>" onblur="verifyPrice()"><br>
                 <span id="pPriceErr" class="error"><?php echo $priceErr ?></span>
             </div>
             <div class="input-field-margin rounded-input-field">
                 <p style="color: gray">Category</p>
                 <select name="category" id="category" class="drop-down-menu">
-                    <option value=" . $category . "><?php echo $product['category']?></option>
+                    <option selected="selected" value="<?php echo $category?>"><?php echo $category?></option>
                     <?php
                     include '../utils/utilities.php';
                     $categories = getProductCategory();
@@ -169,7 +173,7 @@ function test_input($data)
                     ?>
                 </select><br><span class="error"><?php echo $categoryErr ?></span>
             </div>
-            <input class="rectangular-button action-button-margin" type="submit" name="submit" value="Add Product">
+            <input class="rectangular-button action-button-margin" type="submit" name="submit" value="Apply Edits">
         </div>
     </div>
 </form>
