@@ -30,7 +30,7 @@ function updateProductInDB($productId, $productName, $productDetails, $price, $c
 
 function retrieveAllProducts($sellerId){
         $conn = db_conn();
-        $query = "select * from product where sellerId='$sellerId'";
+        $query = "select * from product where sellerId='$sellerId' limit 4";
         try {
             $result = $conn->query($query);
             $rows = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -59,10 +59,10 @@ function retrieveProductDetails($productId){
     }
 }
 
-function searchProduct($searchText){
+function searchProduct($searchText, $offset){
     $conn = db_conn();
 
-    $query = "select * from product where productName like '%$searchText%'";
+    $query = "select * from product where productName like '%$searchText%' limit 4 offset {$offset}";
     try {
         $result = $conn->query($query);
         $rows = $result->fetchAll(PDO::FETCH_ASSOC);

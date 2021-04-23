@@ -127,7 +127,7 @@ function test_input($data){
             <h2>Registration</h2>
             <div>
                 <input id="name" class="rounded-input-field input-field-margin" type="text" name="name" placeholder="Name"
-                       value="<?php echo $name ?>" onblur="verifyName()"><br>
+                       value="<?php echo $name ?>" onkeyup="verifyName()"><br>
                 <span id="nameErr" class="error"><?php echo $nameErr ?></span>
             </div>
             <div>
@@ -155,7 +155,7 @@ function test_input($data){
             </div>
             <div>
                 <input id="email" class="rounded-input-field input-field-margin" type="text" name="email" placeholder="Email"
-                       value="<?php echo $email ?>"onblur="isEmailExist()"><br>
+                       value="<?php echo $email ?>" onkeyup="isEmailExist()"><br>
                 <span id="emailErr" class="error"><?php echo $emailErr; ?></span>
             </div>
             <div>

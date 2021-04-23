@@ -6,10 +6,10 @@ function verifyName(){
     var name = document.getElementById("productName").value
     var nameErr = document.getElementById("productNameErr")
     if (name == ""){
-        nameOk = false;
+        pNameOk = false;
         nameErr.innerText = "Name cannot be empty!"
     }else {
-        nameOk = true
+        pNameOk = true
         nameErr.innerText = null
     }
 }
@@ -45,9 +45,6 @@ function validateForm(){
         verifyName()
         verifyDetails()
         verifyPrice()
-         pNameOk = false;
-         pDetailsOk = false;
-         pPriceOk = false;
         return  false;
     }
 }

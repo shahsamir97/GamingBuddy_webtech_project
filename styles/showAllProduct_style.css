@@ -98,3 +98,37 @@ body {
 .price-text{
     color: dodgerblue;
 }
+
+
+
+.outlined-button{
+    text-decoration: none;
+    border:dodgerblue solid 2px;
+    color: dodgerblue;
+    padding: 10px;
+    font-weight: bold;
+}
+.flex-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px;
+}
+
+.flex-container button{
+    padding: 8px 16px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.previous {
+    background-color: dodgerblue;
+    color: white;
+}
+
+.next{
+    background-color: dodgerblue;
+    color: white;
+    opacity: 0.8;
+    border: 0;
+}

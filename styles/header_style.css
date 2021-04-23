@@ -7,8 +7,10 @@ body {
 
 .header {
     overflow: hidden;
-    background:white;
     padding: 20px 10px;
+    background-color: dodgerblue;
+    margin: 15px;
+    border-radius: 15px;
 }
 
 .headerLogo{
@@ -18,7 +20,7 @@ body {
 
 .header a {
     float: left;
-    color: black;
+    color: white;
     text-align: center;
     font-weight: bold;
     padding: 12px;

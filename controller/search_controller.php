@@ -1,8 +1,8 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . '/model/product_model.php';
 
-if (isset($_GET['searchText'])) {
-    $products = searchProduct($_GET['searchText']);
+if (isset($_GET['searchText']) && isset($_GET['offset'])) {
+    $products = searchProduct($_GET['searchText'], $_GET['offset']);
     if (sizeof($products) > 0) {
         foreach ($products as $key => $product):
             echo "<a href='../view/product_view.php?productId={$product['id']}'>";

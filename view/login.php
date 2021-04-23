@@ -30,7 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
         }else{
             $emailErr = "Email cannot be empty";
         }
-
     }
 
     if (isset($_POST['password'])) {
